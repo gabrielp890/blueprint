@@ -11,6 +11,7 @@ import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
 import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
@@ -68,6 +69,28 @@ public class BlueprintsServices {
      */
     public Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException {
         return bpp.getBlueprintsByAuthor(author);
+    }
+    
+    /**
+     *
+     * @param author
+     * @param name
+     * @param punto
+     * @throws BlueprintNotFoundException
+     */
+    public void actualizarBP(String author, String name,Point punto) throws BlueprintNotFoundException{
+        bpp.actualizarBP(author, name, punto);
+    }
+    
+    /**
+     *
+     * @param author
+     * @param name
+     * @param punto
+     * @throws BlueprintNotFoundException
+     */
+    public  void actualizarBP(String author, String name, List<Point> punto) throws BlueprintNotFoundException{
+        bpp.actualizarBPArray(author, name, punto);
     }
 
 }

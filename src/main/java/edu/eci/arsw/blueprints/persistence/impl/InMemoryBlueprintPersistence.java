@@ -13,6 +13,7 @@ import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.springframework.stereotype.Service;
@@ -85,6 +86,27 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
         }
 //        System.out.println("test1111 "+temp);
         return temp;
+    }
+
+    @Override
+    public void actualizarBP(String author, String name, Point punto) throws BlueprintNotFoundException {
+        if(blueprints.containsKey(new Tuple<>(author,name))){
+            blueprints.get(new Tuple<>(author,name)).addPoint(punto);
+        }else{
+            throw new UnsupportedOperationException("el plano que esta intentancdo actualizar no se encuentra registrado");
+        }
+    }
+
+    @Override
+    public void actualizarBPArray(String author, String name, List<Point> punto) throws BlueprintNotFoundException {
+        if(blueprints.containsKey(new Tuple<>(author,name))){
+            Blueprint b=blueprints.get(new Tuple<>(author,name));
+            for(Point p:punto){
+                b.addPoint(p);
+            }
+        }else{
+        throw new UnsupportedOperationException("el plano que esta intentancdo actualizar no se encuentra registrado"); //To change body of generated methods, choose Tools | Templates.
+    }
     }
 
 }

@@ -6,9 +6,11 @@
 package edu.eci.arsw.blueprints.controllers;
 
 import edu.eci.arsw.blueprints.model.Blueprint;
+import edu.eci.arsw.blueprints.model.Point;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
 import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.services.BlueprintsServices;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -69,6 +71,16 @@ public class BlueprintAPIController {
     public ResponseEntity<?> manejadorPost(@RequestBody Blueprint bp) {
         bs.addNewBlueprint(bp);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+    
+    @RequestMapping(method = RequestMethod.PUT, path = "{author}/{bpname}")
+    public ResponseEntity<?> manejadorput(@PathVariable String author,@PathVariable String name, @RequestBody List<Point> punto){
+        try {
+            bs.actualizarBP(author, name, punto);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (BlueprintNotFoundException ex) {
+            return new ResponseEntity<>(ex, HttpStatus.FORBIDDEN);
+        }
     }
 
 }
