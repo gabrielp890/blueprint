@@ -18,16 +18,27 @@ and open the template in the editor.
     </head>
     <body>
         nombre autor 
-        <input type="text" name="nombreautor">
-        <button type="button">get blueprint</button>
+        <input type="text" id="autor">
+        <button type="button" id="get" onclick="app.actualizarListadoPlanos(document.getElementById('autor').value)">Get blueprint</button>
         <p>author blueprint</p>
-        <table>
-            <tr>
-                <th>Blueprint name</th>
-                <th>Number of point</th>
-                <th></th>
-            </tr>
+        <div class="contenedor">
+            <h1> <em id="titulo">BluePrints Draw: </em></h1>
+            <hr>
+            <canvas id="myCanvas" width="500" height="300" style="border:1px solid #d3d3d3;"></canvas>
+        </div>
+        <table id="t" class="table table-bordered table-inverse">
+            <caption> <em>Blueprints </em></caption>
+            <thead>     
+                <tr class="info">
+                    <th>Blueprint name</th>
+                    <th>Number of point</th>
+                    <th>view</th>
+                </tr>
+            </thead>
+            <tbody id="tabla"></tbody>
         </table>
-        <canvas id="mycanvas"></canvas>
+        <div >
+            <h2><em id="totalPuntos">Total user points:</em></h2>
+        </div>
     </body>
 </html>
